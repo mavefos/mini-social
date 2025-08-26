@@ -1,0 +1,19 @@
+def alterar_foto_usuario(usuario_id, nova_imagem):
+    usuario = Usuario.query.get(usuario_id)
+    if usuario:
+        foto = Foto.query.filter_by(id_usuario=usuario_id).first()
+        if foto:
+            foto.imagem = nova_imagem
+            db.session.commit()
+            return True
+    return False
+
+def alterar_senha_usuario(usuario_id, nova_senha):
+    usuario = Usuario.query.get(usuario_id)
+    if usuario:
+        usuario.senha = nova_senha
+        db.session.commit()
+        return True
+    return False 
+
+    <!DOCTYPE html> <html lang="en"> <head>     <meta charset="UTF-8">     <meta name="viewport" content="width=device-width, initial-scale=1.0">     <link rel="stylesheet" href="{{ url_for('static', filename='css/configuracoes.css') }}">     <title>Configurações da Conta</title> </head> <body>     <h2>Editar Perfil</h2>      <form method="POST" action="{{ url_for('configuracoes')}}">         <label for="nome_completo">Nome</label><br>         <input type="text" name="nome_completo" value="{{ current_user.nome_completo }}"> <br><br>          <label for="nome_usuario">Nome de Usuário</label><br>         <input type="text" name="nome_usuario" value="{{ current_user.nome_usuario }}"> <br><br >          <label for="email">Email</label><br>         <input type="text" name="email" value="{{ current_user.email }}"> <br><br>          <label for="biografia">Biografia</label><br>         <textarea name="bio">{{ current_user.bio }}</textarea><br><br>          <label for="genero">Gênero</label>         <select name="genero" id="">             <option value="feminino" {% if current_user.idioma == 'feminino' %}selected{% endif %}>Feminino</option>             <option value="masculino" {% if current_user.idioma == 'masculino' %}selected{% endif %}>Masculino</option>             <option value="prefiro_nao_informar" {% if current_user.idioma == 'prefiro_nao_informar' %}selected{% endif %}>Prefiro não informar</option>             <p><small>Isso não aparecerá no seu perfil público.</small></p>         </select><br><br>           <label for="idioma">Idioma</label><br>         <select name="idioma" id="">             <option value="pt-br" {% if current_user.idioma == 'pt-br' %}selected{% endif %}>Português</option>         </select><br><br>          <label>Privacidade do Perfil</label>         <select name="privacidade" id="">             <option value="publico" {% if current_user.privacidade == 'publico'%}selected{% endif %}>Público</option>             <option value="privado" {% if current_user.privacidade =='privado'%}selected{% endif %}>Privado</option>         </select><br><br>          <button type="submit">Salvar alterações</button>     </form> </body> </html> estilize essa pagina

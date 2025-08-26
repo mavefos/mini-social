@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/configuracoes.css') }}">
+    <title>Configurações da Conta</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <a href="#perfil" class="sidebar-item">Perfil</a>
+            <a href="#privacidade" class="sidebar-item">Privacidade da conta</a>
+        </nav>
+
+        <main class="main-content">
+            <section id="perfil" class="section active">
+                <div class="section-header">
+                    <h2>Editar perfil</h2>
+                </div>
+                
+                <div class="avatar-section">
+                    <div class="avatar-container">
+                        <div class="avatar">F</div>
+                    </div>
+                    <div class="avatar-info">
+                        <div class="username">FakePlasticTrees</div>
+                        <a href="#" class="change-photo">Alterar foto do perfil</a>
+                    </div>
+                </div>
+
+                    <div class="form-group">
+                        <label for="nome_usuario">Nome de usuário</label>
+                        <div class="input-container">
+                            <input type="text" name="nome_usuario" id="nome_usuario" placeholder="Nome de usuário">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <div class="input-container">
+                            <input type="email" name="email" id="email" placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="biografia">Biografia</label>
+                        <div class="input-container">
+                            <textarea name="bio" id="biografia" placeholder="Biografia"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="genero">Gênero</label>
+                        <div class="input-container">
+                            <select name="genero" id="genero">
+                                <option value="feminino">Feminino</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="outro">Outro</option>
+                                <option value="prefiro_nao_informar">Prefiro não informar</option>
+                            </select>
+                            <div class="privacy-note">Esta informação não aparecerá no seu perfil público.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idioma">Idioma</label>
+                        <div class="input-container">
+                            <select name="idioma" id="idioma">
+                                <option value="pt-br">Português (Brasil)</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <section>
+                <h1>Privacidade da Conta</h1><br>
+                    <select name="privacidade" id="privacidade">
+                        <option value="publico" {% if current_privacidade == "publico" %}selected{% endif %}>Público</option>
+                        <option value="privado" {% if current_privacidade == "privado" %}selected{% endif %}>Privado</option>
+                    </select> <br><br>
+
+                <button type="submit">Salvar alterações</button>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,280 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #262626;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: #111;
+  color: white;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.sidebar-item {
+  color: white;
+  text-decoration: none;
+  padding: 15px 20px;
+  transition: background 0.3s;
+}
+
+.sidebar-item:hover {
+  background-color: #ffd900;
+}
+
+.main-content {
+  flex: 1; 
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.container {
+    max-width: 1000px;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 7px;
+    padding: 32px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+
+.card {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.main-content {
+  padding: 20px;
+  margin: 12px;
+}
+
+h2{
+    color: #ffd900;
+    margin: 20px;
+    cursor: pointer;
+}
+
+h3{
+  position: sticky;
+  top: 0;
+  color: rgb(0, 0, 0); 
+  z-index: 10;
+  padding: 10px;
+  margin: 34px;
+}
+
+.page-container {
+  margin-left: 200px;
+  width: calc(100% - 200px);
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.feed-grid{
+    color: #000000;
+}
+
+.feed-grid {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+}
+
+.feed-grid::-webkit-scrollbar {
+    display: none; 
+}
+.make-post {
+  margin-bottom: 36px;
+}
+.make-post textarea {
+  width: 97%;
+  min-height: 70px;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+.make-post button {
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 22px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.make-post button:hover {
+  background: #ffdb12;
+  color: #000000;
+}
+.post {
+    background: #fffde7;
+    border-radius: 10px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(255,190,0,0.07);
+}
+
+.post-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.post-avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.post-username {
+    font-weight: bold;
+}
+
+.post-date {
+    color: #777;
+    font-size: 0.8rem;
+}
+
+.post-content p {
+    margin: 0;
+}
+
+.post-end{
+  background: #ffffff;
+  width: 600px;
+  height: 2px;
+  position: relative;
+  left: -20px;
+}
+
+.make-comment {
+  margin-top: 20px;
+  margin-bottom: 36px;
+}
+
+.make-comment textarea {
+  width: 95%;
+  min-height: 70px;
+  border: 1px solid #ffbe00;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+
+
+.make-comment button {
+  background: #ffbe00;
+  color: #222;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16.5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+
+.make-comment button:hover {
+  background: #e6a800;
+}
+
+
+.comment {
+  background: #fffde7;
+  border-radius: 10px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(255,190,0,0.07);
+}
+
+.comment-meta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.comment-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #ffbe00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.25rem;
+  margin-right: 12px;
+  order: 1;
+  font-weight: bold;
+}
+
+.comment-username {
+  font-weight: 600;
+  font-size: 1rem;
+  order: 2;
+  text-align: left;
+}
+
+.comment-date {
+  font-size: 0.7rem;
+  color: #888;
+  order: 3;
+  text-align: left;
+}
