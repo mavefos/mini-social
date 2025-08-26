@@ -23,5 +23,5 @@ migrate = Migrate(app, db)
 
 
 
-from utfs import routes 
-from utfs.models import Usuario, Foto 
+from app import routes 
+from app.models import Usuario, Foto 

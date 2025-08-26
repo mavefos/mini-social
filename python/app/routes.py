@@ -1,6 +1,6 @@
 from flask import render_template, url_for, request, redirect, flash
-from utfs.models import Usuario
-from utfs import app, db
+from app.models import Usuario
+from app import app, db
 from flask_login import login_required, current_user
 
 
@@ -39,7 +39,7 @@ def configuracoes():
 
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user
-from utfs.models import Usuario
+from app.models import Usuario
 
 
 

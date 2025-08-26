@@ -1,5 +1,4 @@
-from utfs import db, app
-
+from app import db, app
 
 
 
