@@ -4,7 +4,7 @@ from app import app, db
 from flask_login import login_required, current_user
 
 
-@app.route("/index")  
+@app.route("/")  
 def homepage(): 
     return render_template("homepage.html", current_user=current_user)
 
@@ -36,6 +36,9 @@ def configuracoes():
     
     return render_template("configuracoes.html", current_user=current_user)
 
+@app.route("/index")
+def index():
+    return render_template("index.html")
 
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user

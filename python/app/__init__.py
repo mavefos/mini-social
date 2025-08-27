@@ -8,7 +8,7 @@ import secrets
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] =  'sqlite:///utfs.db'
+app.config['SQLALCHEMY_DATABASE_URI'] =  'sqlite:///app.db'
 app.config['SECRET_KEY'] = secrets.token_hex(16)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)

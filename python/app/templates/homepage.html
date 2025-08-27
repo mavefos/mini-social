@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Feed UTFS</title>
+    <title>Feed</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/homepage.css">
     <link rel="icon" type="image/x-icon" href="/static/logo.png"/>
@@ -10,7 +10,7 @@
 <body>
   <div class="card">
       <nav class="sidebar">
-          <h2>UTFS</h2>
+          <h2>Mini Social</h2>
           <a href="/profile" class="sidebar-item">Perfil</a>
           <a href="/feed" class="sidebar-item">Feed</a>
           <a href="/" class="sidebar-item">Sair</a>
@@ -39,159 +39,8 @@
         console.log(token)
         if (!token) {
             alert('Você não está logado. Redirecionando para a página de login.');
-            window.location.href = '/';
+            window.location.href = '/index';
         }
-
-        const form = document.querySelector('.make-post form');
-        form.onsubmit = function(event) {
-            event.preventDefault();
-            const textarea = form.querySelector('textarea');
-            const content = textarea.value.trim();
-            if (content) {
-                console.log("AAAAAAAA")
-                fetch('/api/posts/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify({ content })
-                })
-                .then(response => {
-                    console.log(response.body)
-                    console.log(response.status)
-                    if (!response.ok) {
-                        return response.json().then(error => {
-                            throw new Error(error.error || 'Erro ao criar postagem');
-                        });
-                    }
-
-                    alert('Postagem criada com sucesso!');
-                    window.location.reload();
-                    textarea.value = '';
-                });
-            }
-        };
-        const feedPlaceholder = document.getElementsByClassName('posts-section')[0];
-        if (!feedPlaceholder) {
-            console.error('Feed placeholder not found');
-        }
-        
-        fetch('/api/feed/recent', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            let posts = data.posts || [];
-            if (posts.length === 0) {
-                feedPlaceholder.innerHTML = `<p>Nenhuma postagem encontrada.</p>`;
-                return;
-            }
-
-            feedPlaceholder.innerHTML = ''; 
-            posts.forEach(post => {
-                let postElement = document.createElement('div');
-                postElement.className = 'post';
-                postElement.id = post.id_post
-
-                let postMeta = document.createElement('div');
-                postMeta.className = 'post-meta';
-                postMeta.innerHTML = `
-                    <div class="post-avatar">${post.user.name.charAt(0).toUpperCase()}</div>
-                    <div class="post-username">${post.user.name}</div>
-                    <div class="post-date">${post.created_at}</div>
-                `;
-                postElement.appendChild(postMeta);
-
-                let postContent = document.createElement('div');
-                postContent.className = 'post-content';
-                postContent.innerHTML = `<p>${post.content}</p>`;
-                postElement.appendChild(postContent);
-
-                let postEnd = document.createElement('div');
-                postEnd.className = 'post-end';
-                postElement.appendChild(postEnd);
-             
-                // Criar seção de comentário
-                let commentSection = document.createElement('section');
-                commentSection.className = 'make-comment';
-                
-                let commentForm = document.createElement('form');
-                let commentTextarea = document.createElement('textarea');
-                commentTextarea.placeholder = 'Deseja responder ao post?';
-                let commentButton = document.createElement('button');
-                commentButton.type = 'submit';
-                commentButton.textContent = 'Publicar';
-                
-                commentForm.appendChild(commentTextarea);
-                commentForm.appendChild(document.createElement('br'));
-                commentForm.appendChild(commentButton);
-                commentForm.id=post.post_id
-                commentSection.appendChild(commentForm);
-                postElement.appendChild(commentSection);
-                
-                feedPlaceholder.appendChild(postElement);
-                
-                // Listener isolado para cada formulário
-                commentForm.onsubmit = function(event) {
-                    event.preventDefault();
-                    const content = commentTextarea.value.trim();
-                    if (content) {
-                        fetch('/api/posts/create_comment', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token}`
-                            },
-                            body: JSON.stringify({
-                                content,
-                                post_id: post.id_post
-                            })
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                return response.json().then(error => {
-                                    throw new Error(error.error || 'Erro ao criar comentário');
-                                });
-                            }
-
-                            alert('Comentário criado com sucesso!');
-                            window.location.reload();
-                            commentTextarea.value = ''; // limpa só esse textarea
-                        });
-                    }
-                };
-
-                post.comments.forEach(comment =>{
-                        if (comment.post_id == post.id_post){
-                            let commentElement = document.createElement('div');
-                            commentElement.className = 'comment';
-
-                            let commentMeta = document.createElement('div');
-                            commentMeta.className = 'comment-meta';
-                            commentMeta.innerHTML = `
-                                <div class="comment-avatar">${comment.user_name.charAt(0).toUpperCase()}</div>
-                                <div class="comment-username">${comment.user_name}</div>
-                                <div class="comment-date">${comment.created_at}</div>
-                            `;
-                            commentElement.appendChild(commentMeta);
-                            
-                            let commentContent = document.createElement('div');
-                            commentContent.className = 'comment-content';
-                            commentContent.innerHTML = `<p>${comment.content}</p>`;
-                            commentElement.appendChild(commentContent);
-                            postElement.appendChild(commentElement);
-                        }
-                    })
-            });
-;        })
-        .catch(error => {
-            console.error('Error fetching feed:', error);
-            feedPlaceholder.innerHTML = `<p>Error loading feed</p>`;
-        });
 
     </script>
 </body>
