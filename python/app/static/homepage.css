@@ -6,7 +6,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #262626;
-    min-height: 100vh;
+    min-height: 90vh;
+    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -277,4 +278,21 @@ h3{
   color: #888;
   order: 3;
   text-align: left;
+}
+
+p {
+  margin: 12px 0;
+  line-height: 1.5;
+  color: #333;
+  font-size: 1rem;
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  text-overflow: ellipsis;
+}
+
+span {
+  font-weight: semi-bold;
+  color: #002fff;
 }
