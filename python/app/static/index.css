@@ -38,7 +38,7 @@
       padding: 8px 20px;
       border-bottom: 3px solid transparent;
       font-weight: 700;
-      color: #ffd034;
+      color: #348cff;
       transition: all 0.3s ease;
       user-select: none;
     }
@@ -70,7 +70,7 @@
     input[type='email']:focus,
     input[type='password']:focus {
       outline: none;
-      border-color: #f6c900;
+      border-color: #348cff;
       background-color: #fff;
     }
     .label-float {
@@ -93,7 +93,7 @@
       transition: background-color 0.3s ease;
     }
     button:hover {
-      background-color: #6204b9;
+      background-color: #f00a0a;
     }
     .footer-text {
       margin-top: 20px;
