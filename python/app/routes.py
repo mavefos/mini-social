@@ -11,7 +11,7 @@ def homepage():
     if request.method == 'POST':
         conteudo = request.form.get('conteudo')
         if conteudo:
-            novo_post = Post(usuario_id=current_user.id, conteudo=conteudo)
+            novo_post = Post(id_usuario=current_user.id, conteudo=conteudo)
             db.session.add(novo_post)
             db.session.commit()
         return redirect(url_for('homepage'))
