@@ -8,7 +8,7 @@ import secrets
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] =  'sqlite:///app.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:rodomastwr@localhost:5433/projeto'
 app.config['SECRET_KEY'] = secrets.token_hex(16)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)

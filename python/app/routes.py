@@ -1,12 +1,47 @@
-from flask import render_template, url_for, request, redirect, flash
+from flask import render_template, url_for, request, redirect, flash, jsonify
 from app.models import Usuario
 from app import app, db
 from flask_login import login_required, current_user
-
+from app import bcrypt  
 
 @app.route("/")  
+@login_required
 def homepage(): 
-    return render_template("homepage.html", current_user=current_user)
+    return render_template("login.html", current_user=current_user)
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        email = request.form.get("email")
+        senha = request.form.get("senha")
+        usuario = Usuario.query.filter_by(email=email).first()
+        if usuario and bcrypt.check_password_hash(usuario.senha, senha):
+            login_user(usuario)
+            return redirect(url_for("homepage"))
+        else:
+            flash("Email ou senha incorretos")
+            return redirect(url_for("login"))
+    return render_template("homepage.html")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        nome_usuario = request.form.get("nome_usuario")
+        email = request.form.get("email")
+        senha = request.form.get("senha")
+        confirmacao_senha = request.form.get("confirmacao_senha")
+
+        if senha != confirmacao_senha:
+            flash("As senhas não coincidem")
+            return redirect(url_for("cadastro"))
+
+        senha_hash = bcrypt.generate_password_hash(senha).decode('utf-8')
+        usuario = Usuario(nome_usuario=nome_usuario, email=email, senha=senha_hash)
+        db.session.add(usuario)
+        db.session.commit()
+        flash("Cadastro realizado com sucesso! Faça login.")
+        return redirect(url_for("login"))
+    return render_template("cadastro.html")
 
 @app.route("/perfil/<id_usuario>")
 @login_required

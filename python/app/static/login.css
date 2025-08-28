@@ -10,51 +10,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #fafafa;
+      background: #ffffff;
       padding: 20px;
-    }
-    .container {
-      max-width: 400px;
-      width: 100%;
-      background: #fff;
-      padding: 32px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgb(0 0 0 / 0.1);
-      display: flex;
-      flex-direction: column;
     }
     h2 {
       text-align: center;
       margin-bottom: 24px;
-    }
-    .tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-      gap: 16px;
-    }
-    .tab {
-      cursor: pointer;
-      padding: 8px 20px;
-      border-bottom: 3px solid transparent;
-      font-weight: 700;
       color: #348cff;
-      transition: all 0.3s ease;
-      user-select: none;
-    }
-    .tab.active {
-      border-bottom-color: #000;
-      color: #000;
     }
     form {
       display: flex;
       flex-direction: column;
       gap: 14px;
-    }
-    label {
-      font-weight: 600;
-      font-size: 14px;
-      color: #000000;
     }
     input[type='text'],
     input[type='email'],
@@ -70,7 +37,7 @@
     input[type='email']:focus,
     input[type='password']:focus {
       outline: none;
-      border-color: #348cff;
+      border-color: #;
       background-color: #fff;
     }
     .label-float {
@@ -93,13 +60,13 @@
       transition: background-color 0.3s ease;
     }
     button:hover {
-      background-color: #f00a0a;
+      background-color: #ff0000;
     }
     .footer-text {
       margin-top: 20px;
       text-align: center;
       font-size: 14px;
-      color: #666;
+      color: #000000;
     }
     .footer-text a {
       color: #0095f6;
@@ -111,4 +78,14 @@
     }
     .hidden {
       display: none;
+    }
+
+    a {
+      color: #000000;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }

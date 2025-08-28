@@ -28,20 +28,5 @@
 </div> 
     <section class="posts-section"></section>
 </main>
-    <script>
-        let token = document.cookie.split('; ').find(row => row.startsWith('token='));
-        if (token) {
-            token = token.split('=')[1];
-        } else {
-            token = null;
-        }
-
-        console.log(token)
-        if (!token) {
-            alert('Você não está logado. Redirecionando para a página de login.');
-            window.location.href = '/index';
-        }
-
-    </script>
 </body>
 </html>
