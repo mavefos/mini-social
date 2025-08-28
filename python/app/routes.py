@@ -1,13 +1,23 @@
 from flask import render_template, url_for, request, redirect, flash, jsonify
-from app.models import Usuario
+from app.models import Usuario, Post
 from app import app, db
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, logout_user
 from app import bcrypt  
 
-@app.route("/")  
+
+@app.route('/homepage', methods=['GET', 'POST'])
 @login_required
-def homepage(): 
-    return render_template("login.html", current_user=current_user)
+def homepage():
+    if request.method == 'POST':
+        conteudo = request.form.get('conteudo')
+        if conteudo:
+            novo_post = Post(usuario_id=current_user.id, conteudo=conteudo)
+            db.session.add(novo_post)
+            db.session.commit()
+        return redirect(url_for('homepage'))
+
+    posts = Post.query.order_by(Post.data_criacao.desc()).all()
+    return render_template('homepage.html', posts=posts)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -21,10 +31,10 @@ def login():
         else:
             flash("Email ou senha incorretos")
             return redirect(url_for("login"))
-    return render_template("homepage.html")
+    return render_template("login.html")
 
-@app.route("/register", methods=["GET", "POST"])
-def register():
+@app.route("/cadastro", methods=["GET", "POST"])
+def cadastro():
     if request.method == "POST":
         nome_usuario = request.form.get("nome_usuario")
         email = request.form.get("email")
@@ -52,6 +62,19 @@ def perfil(id_usuario):
         usuario  = Usuario.query.get(int(id_usuario))
         return render_template("perfil.html", usuario=usuario)
 
+@app.route('/perfil')
+@login_required
+def perfil_logado():
+    return redirect(url_for('perfil', id_usuario=current_user.id))
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash("Logout realizado com sucesso!")
+    return redirect(url_for('login'))
+
+
 
 @app.route("/configuracoes", methods=["POST", "GET"])
 @login_required
@@ -70,10 +93,6 @@ def configuracoes():
         return redirect(url_for("configuracoes"))
     
     return render_template("configuracoes.html", current_user=current_user)
-
-@app.route("/index")
-def index():
-    return render_template("index.html")
 
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user

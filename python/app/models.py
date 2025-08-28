@@ -25,3 +25,10 @@ class Foto(db.Model):
     imagem = db.Column(db.String, default="default.png")
     data_criacao = db.Column(db.DateTime, nullable = False, default=datetime.utcnow)
     id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable = False) 
+
+class Post(db.Model): 
+    id = db.Column(db.Integer, primary_key = True)
+    conteudo = db.Column(db.Text, nullable = False)
+    data_criacao = db.Column(db.DateTime, nullable = False, default=datetime.utcnow)
+    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable = False) 
+    usuario = db.relationship('Usuario', backref=db.backref('posts', lazy=True))
