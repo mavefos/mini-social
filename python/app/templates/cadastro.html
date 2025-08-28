@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/cadastro.css">
-    <title>Document</title>
+    <title>Cadastro</title>
 </head>
 <body>
-    <h2>Cadastrar</h2>
-<a href="{{ url_for('login') }}">Entrar</a>
+<div class="container">
+<div class="header">
+  <h2>Cadastrar</h2>
+  <a href="{{ url_for('login') }}">Entrar</a>
+</div>
 
 <form action="{{ url_for('cadastro') }}" method="POST">
   <input type="text" name="nome_usuario" placeholder="Nome de usuário" required>
@@ -27,6 +30,6 @@
     </ul>
   {% endif %}
 {% endwith %}
-
+</div>
 </body>
 </html>

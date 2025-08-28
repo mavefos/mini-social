@@ -33,8 +33,7 @@
                 <section class="posts-section">
                     {% for post in posts %}
                     <div class="post-card">
-                        <p><strong>{{ post.usuario.nome_usuario }}:</strong> {{ post.conteudo }}</p>
-                        <span>{{ post.data_criacao.strftime('%d/%m/%Y %H:%M') }}</span>
+                        <p><strong>{{ post.usuario.nome_usuario }}:</strong> {{ post.conteudo }} <span>{{ post.data_criacao.strftime('%d/%m/%Y %H:%M') }}</span></p>
                     </div>
                     {% else %}
                     <p>Nenhum post ainda. Seja o primeiro a publicar!</p>
