@@ -10,7 +10,7 @@
     <h2>Cadastrar</h2>
 <a href="{{ url_for('login') }}">Entrar</a>
 
-<form action="{{ url_for('register') }}" method="POST">
+<form action="{{ url_for('cadastro') }}" method="POST">
   <input type="text" name="nome_usuario" placeholder="Nome de usuário" required>
   <input type="email" name="email" placeholder="Email" required>
   <input type="password" name="senha" placeholder="Senha" required>

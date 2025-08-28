@@ -4,29 +4,45 @@
     <meta charset="UTF-8">
     <title>Feed</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/homepage.css">
-    <link rel="icon" type="image/x-icon" href="/static/logo.png"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.png') }}"/>
 </head>
 <body>
-  <div class="card">
-      <nav class="sidebar">
-          <h2>Mini Social</h2>
-          <a href="/profile" class="sidebar-item">Perfil</a>
-          <a href="/feed" class="sidebar-item">Feed</a>
-          <a href="/" class="sidebar-item">Sair</a>
-        </nav></div>
+    <div class="card">
+        <nav class="sidebar">
+            <h2>Mini Social</h2>
+            <a href="{{ url_for('perfil_logado') }}" class="sidebar-item">Perfil</a>
+            <a href="{{ url_for('homepage') }}" class="sidebar-item">Feed</a>
+            <a href="{{ url_for('logout') }}" class="sidebar-item">Sair</a>
+        </nav>
+    </div>
+
     <div class="container">
         <main class="main-content">
-                <section id="feed" class="section active">
-    <div class="section-header">
-    </div> <br><br><br>
-    <div class="make-post">
-    <form>
-        <textarea placeholder="O que você está pensando?"></textarea><br>
-        <button type="submit">Publicar</button>
-    </form>
-</div> 
-    <section class="posts-section"></section>
-</main>
+            <section id="feed" class="section active">
+                <div class="section-header">
+                    <h3>Feed</h3>
+                </div> 
+                
+                <div class="make-post">
+                    <form action="{{ url_for('homepage') }}" method="POST">
+                        <textarea name="conteudo" placeholder="O que você está pensando?" required></textarea><br>
+                        <button type="submit">Publicar</button>
+                    </form>
+                </div> 
+
+                <section class="posts-section">
+                    {% for post in posts %}
+                    <div class="post-card">
+                        <p><strong>{{ post.usuario.nome_usuario }}:</strong> {{ post.conteudo }}</p>
+                        <span>{{ post.data_criacao.strftime('%d/%m/%Y %H:%M') }}</span>
+                    </div>
+                    {% else %}
+                    <p>Nenhum post ainda. Seja o primeiro a publicar!</p>
+                    {% endfor %}
+                </section>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
