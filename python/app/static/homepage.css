@@ -35,7 +35,7 @@ body {
 }
 
 .sidebar-item:hover {
-  background-color: #ffd900;
+  background-color: #0077ff;
 }
 
 .main-content {
@@ -83,7 +83,7 @@ html, body {
 }
 
 h2{
-    color: #ffd900;
+    color: #0044ff;
     margin: 20px;
     cursor: pointer;
 }
@@ -143,8 +143,8 @@ h3{
   transition: background 0.2s;
 }
 .make-post button:hover {
-  background: #ffdb12;
-  color: #000000;
+  background: #0077ff;
+  color: #ffffff;
 }
 .post {
     background: #fffde7;

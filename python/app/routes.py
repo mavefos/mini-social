@@ -74,8 +74,6 @@ def logout():
     flash("Logout realizado com sucesso!")
     return redirect(url_for('login'))
 
-
-
 @app.route("/configuracoes", methods=["POST", "GET"])
 @login_required
 def configuracoes():
